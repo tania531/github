@@ -1,0 +1,12 @@
+body {
+  color: white;
+  background-color: #292c33;
+  font-family: Helvetica;
+  font-size: 40px;
+}
+#logo {
+  background-image: url('/assets/gitlogo.png');
+  height: 300px;
+  width: 300px;
+  background-size: cover;
+}
