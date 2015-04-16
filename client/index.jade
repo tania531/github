@@ -1,16 +1,21 @@
 doctype html
 html
   head
-    meta(charset='utf-8')      
-    title Git Blame Board
+    meta(charset='utf-8')
+    title Git Blame
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.min.css')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
   body
-    #logo
-    h1#title Git Blame Board
-    
-    
+    .container
+      .panel.panel-default
+        .panel.body
+          #github
+          h1 Git Blame  
+          #ch
+      .row
     script(src='/vendor/jquery/dist/jquery.min.js')
+    script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')
     script(src='/vendor/lodash/lodash.min.js')
     script(src=isProd ? '/index.min.js' : '/index.js')
