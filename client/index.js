@@ -3,7 +3,8 @@
 $(document).ready(init);
 
 function init(){
-  $('body').on('click', '#draw', generateTiles);
+  generateTiles();
+  // $('body').on('click', '#draw', generateTiles);
   
 }
 // $('#fetch').on('click', function(){
