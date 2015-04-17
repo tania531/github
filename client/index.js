@@ -5,18 +5,37 @@ $(document).ready(init);
 function init() {
   generateTiles();
 }
-
-var gitIds = ['samerbuna', 'IAmEddieDean', 'dhh', 'ojangali'];
-
+var currTime = moment.utc();
+var profiles = [
+  {un:'samerbuna', dailyCommits:0},
+  {un:'dhh', dailyCommits:0},
+  {un:'IAmEddieDean', dailyCommits:0},
+  {un:'EdsDover', dailyCommits:0},
+  {un:'chyld', dailyCommits:0}
+];
 function generateTiles() {
-  gitIds.forEach(function(users){
-    var url = 'https://api.github.com/users/'+users;
-    $.getJSON(url, function(response){
-      var $newRow = $("#template").clone();
-      $newRow.find(".image").attr("src", response.avatar_url);
-      $newRow.find(".name").text(response.name);
-      $newRow.removeClass("hidden");
-      $('#cards-container').append($newRow);
+  profiles.forEach(function(profile){
+    var profileUrl = 'https://api.github.com/users/' + profile.un;
+    var eventsUrl = profileUrl + '/events';
+    $.getJSON(profileUrl, function(profileresponse){
+      $.getJSON(eventsUrl, function(eventsresponse){
+        var commitCount = countCommits(eventsresponse);
+        var $newRow = $("#template").clone();
+        $newRow.find(".image").attr("src", profileresponse.avatar_url);
+        $newRow.find(".name").text(profileresponse.name);
+        $newRow.find(".commits").text(commitCount);
+        $newRow.removeClass("hidden");
+        $('#cards-container').append($newRow);
+      });
     });
   });
+}
+function countCommits(eventsresponse){
+  var commitCount = 0;
+  eventsresponse.forEach(function(event){
+    if(event.payload.comment !== '' && moment.utc(event.created_at).diff(currTime, 'hours') > -24){
+     commitCount++;
+    }
+  });
+  return commitCount;
 }
