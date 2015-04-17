@@ -6,7 +6,7 @@ function init() {
   generateTiles();
 }
 
-var gitIds = ['samerbuna', 'IAmEddieDean', 'dhh'];
+var gitIds = ['samerbuna', 'IAmEddieDean', 'dhh', 'ojangali'];
 
 function generateTiles() {
   gitIds.forEach(function(users){
