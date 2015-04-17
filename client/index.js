@@ -20,7 +20,6 @@ function generateTiles() {
     var eventsUrl = profileUrl + '/events';
     $.getJSON(profileUrl, function(profileresponse){
       $.getJSON(eventsUrl, function(eventsresponse){
-        debugger;
         var commitCount = countCommits(eventsresponse);
         var $newRow = $("#template").clone();
         $newRow.find(".image").attr("src", profileresponse.avatar_url);
