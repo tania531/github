@@ -2,6 +2,8 @@ doctype html
 html
   head
     meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
     title Git Blame
     link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.min.css')
@@ -14,7 +16,15 @@ html
           #github
           h1 Git Blame
           #ch
-      .row
+
+      #cards-container.row
+        #template.col-sm-4.hidden
+          .card.row
+            .col-sm-4.left-edge-content
+              img.image(src='')
+            .col-sm-8
+              .name
+
     script(src='/vendor/jquery/dist/jquery.min.js')
     script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')
     script(src='/vendor/lodash/lodash.min.js')
