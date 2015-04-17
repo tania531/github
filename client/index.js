@@ -5,7 +5,6 @@ $(document).ready(init);
 function init() {
   generateTiles();
 }
-
 var currTime = moment.utc();
 var profiles = [
   {un:'samerbuna', dailyCommits:0},
