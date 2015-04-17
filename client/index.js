@@ -24,12 +24,18 @@ function generateTiles() {
         $newRow.find(".image").attr("src", profileresponse.avatar_url);
         $newRow.find(".name").text(profileresponse.name);
         $newRow.find(".commits").text(commitCount);
+        $newRow.find(".card.row").css('background-color',colorTiles(commitCount));
         $newRow.removeClass("hidden");
         $('#cards-container').append($newRow);
       });
     });
   });
 }
+
+function colorTiles(dc){
+  return dc > 4 ? 'green' : 'red';
+}
+
 function countCommits(eventsresponse){
   var commitCount = 0;
   eventsresponse.forEach(function(event){
