@@ -27,6 +27,7 @@ function generateTiles() {
        $newRow.find(".name").text(profileresponse.name);
        $newRow.find(".commits").text('commits in the last 24 hours: ' + counts.commitCount);
        $newRow.find(".pulls").text('pull requests: ' + counts.pullCount);
+       $newRow.find(".score").text('score: ' + counts.score);
        $newRow.find(".card.row").addClass('status-'+colorTiles(counts.commitCount));
        console.log(colorTiles(counts.commitCount));
        $newRow.removeClass('hidden');
@@ -41,7 +42,7 @@ function colorTiles(dc){
 }
 
 function countCommits(eventsresponse){
-  var counts = {commitCount: 0, pullCount: 0};
+  var counts = {commitCount: 0, pullCount: 0, score:0};
 
   eventsresponse.forEach(function(event){
     if(event.payload.comment !== '' && moment.utc(event.created_at).diff(currTime, 'hours') > -24){
@@ -50,6 +51,7 @@ function countCommits(eventsresponse){
     if(event.type === 'PullRequestEvent'){
       counts.pullCount++;
     }
+    counts.score = counts.commitCount + counts.pullCount + 10;
   });
   return counts;
 }
