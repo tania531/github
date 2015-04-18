@@ -27,7 +27,8 @@ function generateTiles() {
        $newRow.find(".name").text(profileresponse.name);
        $newRow.find(".commits").text('commits in the last 24 hours: ' + counts.commitCount);
        $newRow.find(".pulls").text('pull requests: ' + counts.pullCount);
-       $newRow.find(".card.row").css('background-color',colorTiles(counts.commitCount));
+       $newRow.find(".card.row").addClass('status-'+colorTiles(counts.commitCount));
+       console.log(colorTiles(counts.commitCount));
        $newRow.removeClass('hidden');
        $('#cards-container').append($newRow);
       });
@@ -36,7 +37,7 @@ function generateTiles() {
 }
 
 function colorTiles(dc){
-  return dc > 4 ? '#B8DBD3' : '#D3B8DB';
+  return dc > 4 ? 'pass' : 'fail';
 }
 
 function countCommits(eventsresponse){
