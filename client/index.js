@@ -11,7 +11,9 @@ var profiles = [
   {un:'dhh', dailyCommits:0},
   {un:'IAmEddieDean', dailyCommits:0},
   {un:'EdsDover', dailyCommits:0},
-  {un:'chyld', dailyCommits:0}
+  {un:'chyld', dailyCommits:0},
+  {un:'sherylpeebee', dailyCommits:0},
+  {un:'tania531', dailyCommits:0}
 ];
 function generateTiles() {
   profiles.forEach(function(profile){
@@ -19,12 +21,12 @@ function generateTiles() {
     var eventsUrl = profileUrl + '/events';
     $.getJSON(profileUrl, function(profileresponse){
       $.getJSON(eventsUrl, function(eventsresponse){
-       var counts = {commitCount: countCommits(eventsresponse), pullCount: countCommits(eventsresponse)};
+       var counts = countCommits(eventsresponse);
        var $newRow = $("#template").clone();
        $newRow.find(".image").attr("src", profileresponse.avatar_url);
        $newRow.find(".name").text(profileresponse.name);
-       $newRow.find(".commits").text(counts.commitCount);
-       $newRow.find(".pulls").text(counts.pullCount);
+       $newRow.find(".commits").text('commits in the last 24 hours: ' + counts.commitCount);
+       $newRow.find(".pulls").text('pull requests: ' + counts.pullCount);
        $newRow.find(".card.row").css('background-color',colorTiles(counts.commitCount));
        $newRow.removeClass('hidden');
        $('#cards-container').append($newRow);
@@ -34,7 +36,7 @@ function generateTiles() {
 }
 
 function colorTiles(dc){
-  return dc > 4 ? 'green' : 'red';
+  return dc > 4 ? '#B8DBD3' : '#D3B8DB';
 }
 
 function countCommits(eventsresponse){
